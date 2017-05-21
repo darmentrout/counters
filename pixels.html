@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>pixels</title>
+	<!-- 2016-09-26 -->
+	<style>
+		body { background: #111; height: 100%; overflow:hidden; }
+		div { width: 1px; height: 1px; background-color: #ddd; }
+	</style>
+</head>
+<body>
+
+<script>
+	var fieldX, fieldY;
+	var randX, randY;
+	var field = [];
+	var interval = prompt('Enter the interval in milliseconds', '250');
+
+	function setField() {
+		fieldX = document.body.offsetWidth;
+		fieldY = document.body.scrollHeight;
+	}
+	setField();
+	window.addEventListener("resize", setField);
+
+	function randXY() {
+		randX = Math.floor((Math.random() * fieldX) + 1);
+		randY = Math.floor((Math.random() * fieldY) + 1);
+	}
+
+	var time = setInterval(function(){
+		randXY();
+		var pixel = document.createElement('div');
+		if ( field.indexOf(randY + ',' + randX) > -1 ){
+			console.log('duplicate: (' + randY + ',' + randX + ')');
+			pixel.setAttribute('style', ' background-color: #6699ff; position: absolute; top:' + randY + 'px; left:' + randX + 'px;');
+		}
+		else {
+			pixel.setAttribute('style', 'position: absolute; top:' + randY + 'px; left:' + randX + 'px;');
+		}
+		document.getElementsByTagName('body')[0].appendChild(pixel);
+		field.push(randY + ',' + randX);
+	}, interval);
+</script>
+	
+</body>
+</html>

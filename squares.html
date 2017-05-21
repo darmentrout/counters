@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Squares</title>
+	<style>
+		* { box-sizing: border-box; }
+		html, body, #wrapper { padding: 0; margin: 0; height: 100%; width: 100%; overflow: hidden; background: #222;}
+		#wrapper { margin: 0 auto !important; width: 1500px;}
+		#wrapper div { width: 75px; height: 75px; display: inline-block; margin: 0; float: left; }
+	</style>
+</head>
+<body>
+
+<div id="wrapper"></div>
+
+
+<script>
+	var units = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
+	var color = '';
+	var init = setInterval(function(){
+		color = '';
+		for (i=0; i<6; i++) {
+			color += units[Math.floor((Math.random() * 15) + 1)];
+		}
+		var elem = document.createElement('div');
+		elem.setAttribute('style', 'background: #' + color + ';')
+		document.getElementById('wrapper').appendChild(elem);
+	}, 15000);
+</script>
+	
+</body>
+</html>
